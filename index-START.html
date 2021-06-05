@@ -35,6 +35,31 @@
   </style>
 
 <script>
+  const hero = document.querySelector('.hero');
+  const text = hero.querySelector('h1');
+  console.log(`hero`, {hero})
+  const walk = 100;
+
+  function setShadow (e) {
+    /* console.log(`e`, {e}) */
+    const {offsetWidth: screenWidth , offsetHeight: screenHeight} = hero
+    const {x:xMouse , y:yMouse} = e
+    /* console.log(xMouse,yMouse); */
+    
+    const xShadow = Math.round((xMouse / screenWidth) * walk - (walk /2))
+    const yShadow = Math.round((yMouse / screenHeight) * walk - (walk /2))
+    console.log(`xShadow`, xShadow)
+    console.log(`yShadow`, yShadow)
+    text.style.textShadow = 
+          `${xShadow}px ${yShadow}px 0 rgba(255,0,255,0.7),
+          ${xShadow * -1}px ${yShadow}px 0 rgba(0,255,255,0.7),
+          ${xShadow}px ${yShadow * -1}px 0 rgba(0,255,0,0.7),
+          ${xShadow * -1}px ${yShadow}px 0 rgba(0,0,255,0.7)
+        `
+  }
+
+  hero.addEventListener('mousemove', setShadow)
+
 </script>
 </body>
 </html>
